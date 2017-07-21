@@ -5,18 +5,18 @@ module Bittrex
                 :total, :fill, :executed_at, :raw
 
     def initialize(attrs = {})
-      @id = attrs['Id'] || attrs['OrderUuid'] if ( attrs['Id'] || attrs['OrderUuid']).present?
-      @type = (attrs['Type'] || attrs['OrderType']).to_s.capitalize if (attrs['Type'] || attrs['OrderType']).present?
-      @exchange = attrs['Exchange'] if attrs['Exchange'].present?
-      @quantity = attrs['Quantity'] if attrs['Quantity'].present?
-      @remaining = attrs['QuantityRemaining'] if attrs['QuantityRemaining'].present?
-      @price = attrs['Rate'] || attrs['Price'] if (attrs['Rate'] || attrs['Price']).present?
-      @total = attrs['Total'] if attrs['Total'].present?
-      @fill = attrs['FillType'] if attrs['FillType'].present?
-      @limit = attrs['Limit'] if attrs['Limit'].present?
-      @commission = attrs['Commission'] if attrs['Commission'].present?
+      @id = attrs['Id'] || attrs['OrderUuid']
+      @type = (attrs['Type'] || attrs['OrderType']).to_s.capitalize
+      @exchange = attrs['Exchange']
+      @quantity = attrs['Quantity']
+      @remaining = attrs['QuantityRemaining']
+      @price = attrs['Rate'] || attrs['Price']
+      @total = attrs['Total']
+      @fill = attrs['FillType']
+      @limit = attrs['Limit']
+      @commission = attrs['Commission']
       @raw = attrs
-      @executed_at = Time.parse(attrs['TimeStamp']) if attrs['TimeStamp'].present?
+      @executed_at = Time.parse(attrs['TimeStamp'] || Time.now.to_s)
     end
 
     def self.book(market, type, depth = 50)
