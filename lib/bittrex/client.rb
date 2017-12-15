@@ -1,6 +1,9 @@
 require 'faraday'
 require 'base64'
 
+require "faraday_middleware"
+require "faraday/conductivity"
+
 module Bittrex
   class Client
     HOST = 'https://bittrex.com/api/v1.1'
