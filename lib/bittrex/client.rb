@@ -39,7 +39,7 @@ module Bittrex
       @connection ||= Faraday.new(:url => HOST) do |faraday|
         faraday.request  :url_encoded
         faraday.adapter  Faraday.default_adapter
-				faraday.response :detailed_logger, Rails.logger
+				faraday.use :extended_logging, logger: Rails.logger
       end
     end
   end
