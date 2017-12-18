@@ -1,9 +1,6 @@
 require 'faraday'
 require 'base64'
 
-require "faraday_middleware"
-require "faraday/conductivity"
-
 module Bittrex
   class Client
     HOST = 'https://bittrex.com/api/v1.1'
@@ -42,7 +39,6 @@ module Bittrex
       @connection ||= Faraday.new(:url => HOST) do |faraday|
         faraday.request  :url_encoded
         faraday.adapter  Faraday.default_adapter
-				faraday.use :extended_logging, logger: Rails.logger
       end
     end
   end
